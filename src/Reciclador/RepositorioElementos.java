@@ -13,17 +13,9 @@ public class RepositorioElementos {
 			this.elementos.add(elementoReciclado.reciclar());
 		}
 	}
-	
-	public ArrayList<Elemento> getElementos() {
-		return this.elementos;
-	}
 
 	public boolean exists(Elemento elementoAReciclar) {
 		return elementos.stream().anyMatch(elemento -> elementoAReciclar.getName() == elemento.getName());
-	}
-
-	public void reciclarExistente(Elemento elementoAReciclar) {
-		this.buscarElemento(elementoAReciclar).reciclar();
 	}
 	
 	public Elemento buscarElemento(Elemento elementoBuscado) {
@@ -32,5 +24,10 @@ public class RepositorioElementos {
 		 .filter(elemento -> elemento.getName() == elementoBuscado.getName())
 		 .findFirst()
 		 .get();
+	}
+	
+	//Getters & Setters
+	public ArrayList<Elemento> getElementos() {
+		return this.elementos;
 	}
 }

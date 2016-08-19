@@ -1,25 +1,16 @@
 package Reciclador;
 
-import static org.junit.Assert.assertTrue;
-
-import java.util.ArrayList;
-
-import org.junit.Test;
-
 import Usuario.Login;
-import Usuario.RepositorioDeUsuarios;
 import Usuario.Usuario;
 
 public class Reciclador {
 	
-	RepositorioDeUsuarios usuarios = new RepositorioDeUsuarios();
 	Usuario usuarioLogged;
 			
 	private RepositorioElementos elementosGlobales;
 	
 	public Reciclador(Usuario user, String password, RepositorioElementos elementosGlobales) {
 		this.setElementosDelUser(user);
-		usuarios.agregarUsuario(user);
 		usuarioLogged = Login.iniciarSesion(user, password);
 		this.elementosGlobales = elementosGlobales;
 	}
@@ -29,10 +20,10 @@ public class Reciclador {
 		user.setElementosLocales(elementosLocalesDelUser);
 	}
 	
-	public void cambiarUsuario(Usuario user, String password) {
+	public Reciclador cambiarUsuario(Usuario user, String password) {
 		this.setElementosDelUser(user);
-		usuarios.agregarUsuario(user);
 		usuarioLogged = Login.iniciarSesion(user, password);
+		return this;
 	}
 	
 	public Reciclador reciclar(Elemento elementoAReciclar) {
@@ -43,6 +34,10 @@ public class Reciclador {
 	
 	public RepositorioElementos getRecicladosDelDia() {
 		return this.elementosGlobales;
+	}
+	
+	public RepositorioElementos getRecicladosDelUser() {
+		return this.usuarioLogged.getRepositorioElementos();
 	}
 		
 	public int getRecicladosDelDiaParaElElemento(Elemento elemento) {

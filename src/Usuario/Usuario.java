@@ -7,7 +7,7 @@ public class Usuario {
 
 	private String name;
 	private String password;
-	private RepositorioElementos repositorioElementos;
+	private RepositorioElementos elementosLocales;
 	
 	public Usuario(String name, String password) {
 		this.name = name;
@@ -15,10 +15,10 @@ public class Usuario {
 	}
 	
 	public Usuario reciclar(Elemento elementoAReciclar) {
-		if(repositorioElementos.exists(elementoAReciclar)) {
-			repositorioElementos.reciclarExistente(elementoAReciclar);
+		if(elementosLocales.exists(elementoAReciclar)) {
+			elementosLocales.buscarElemento(elementoAReciclar).reciclar();
 		} else {
-			repositorioElementos.reciclar(elementoAReciclar);
+			elementosLocales.reciclar(elementoAReciclar);
 		}
 		return this;
 	}
@@ -30,17 +30,12 @@ public class Usuario {
 	
 	//Getters y Setters
 	public RepositorioElementos getRepositorioElementos() {
-		return this.repositorioElementos;
+		return this.elementosLocales;
 	}
 	
 	public Usuario setElementosLocales(RepositorioElementos misElementos) {
-		this.repositorioElementos = misElementos;
+		this.elementosLocales = misElementos;
 		return this;
 	}
-	
-	
-
-	
-	
 	
 }

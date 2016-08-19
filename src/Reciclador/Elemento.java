@@ -1,23 +1,17 @@
 package Reciclador;
 
-import java.util.ArrayList;
-
 public class Elemento {
 	
 	private String nombre;
-	private int recicladosLocal = 0;
+	private int totalReciclados = 0;
 	
 	public Elemento(String nombre) {
 		this.nombre = nombre;
 	}
 
 	public Elemento reciclar() {
-		this.recicladosLocal ++;
+		this.totalReciclados ++;
 		return this;
-	}
-	
-	public int getTotalReciclados() {
-		return this.recicladosLocal;
 	}
 	
 	public Elemento clone() {
@@ -25,8 +19,13 @@ public class Elemento {
 		return nuevoElemento;
 	}
 	
+	//Getters & Setters
+	
+	public int getTotalReciclados() {
+		return this.totalReciclados;
+	}
+	
 	public String getName() {
 		return this.nombre;
 	}
-	
 }
